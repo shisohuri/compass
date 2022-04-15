@@ -1,90 +1,166 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Progate</title>
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="stylesheet.css">
-</head>
-<body>
-  <header>
-    <div class="container">
-      <div class="header-left">
-        <img class="logo" src="https://prog-8.com/images/html/advanced/main_logo.png">
-      </div>
-      <span class="fa fa-bars menu-icon"></span>
-      <div class="header-right">
-        <a href="#">レッスン</a>
-        <a href="#">新規登録</a>
-        <a href="#" class="login">ログイン</a>
-      </div>
-    </div>
-  </header>
-  <div class="top-wrapper">
-    <div class="container">
-      <h1>LEARN TO CODE.<br>LEARN TO BE CREATIVE.</h1>
-      <p>Progateはオンラインプログラミング学習サービスです。<br>初心者にもやさしいスライドとレッスンで、ウェブサービスを作りながらプログラミングを学んでいきましょう。</p>
-      <div class="btn-wrapper">
-        <a href="#" class="btn signup">新規登録はこちら</a>
-        <p>or</p>
-        <a href="#" class="btn facebook"><span class="fa fa-facebook"></span>Facebookで登録</a>
-        <a href="#" class="btn twitter"><span class="fa fa-twitter"></span>Twitterで登録</a>
-      </div>
-    </div>
-  </div>
-  <div class="lesson-wrapper">
-    <div class="container">
-      <div class="heading">
-        <h2>Learn Where to Get Started!</h2>
-      </div>
-      <div class="lessons">
-        <div class="lesson">
-          <div class="lesson-icon">
-            <img src="https://prog-8.com/images/html/advanced/html.png">
-            <p>HTML & CSS</p>
-          </div>
-          <p class="text-contents">ウェブページの作成に使用される言語です。HTMLとCSSを組み合わせることで、静的なページを作り上げることができます。</p>
-        </div>
-        <div class="lesson">
-          <div class="lesson-icon">
-            <img src="https://prog-8.com/images/html/advanced/jQuery.png">
-            <p>jQuery</p>
-          </div>
-          <p class="text-contents">素敵な動きを手軽に実装できるJavaScriptライブラリです。 アニメーション効果をつけたり、Ajax（エイジャックス）を使って外部ファイルを読み込んだりと色々なことができます。</p>
-        </div>
-        <div class="lesson">
-          <div class="lesson-icon">
-            <img src="https://prog-8.com/images/html/advanced/ruby.png">
-            <p>Ruby</p>
-          </div>
-          <p class="text-contents">オープンソースの動的なプログラミング言語で、 シンプルさと高い生産性を備えています。大きなWebアプリケーションから小さな日用ツールまで、さまざまなソフトウェアを作ることができます。</p>
-        </div>
-        <div class="lesson">
-          <div class="lesson-icon">
-            <img src="https://prog-8.com/images/html/advanced/php.png">
-            <p>PHP</p>
-          </div>
-          <p class="text-contents">HTMLだけではページの内容を変えることはできません。PHPはHTMLにプログラムを埋め込み、それを可能にします。</p>
-        </div>
-      </div>
-      <div class="clear"></div>
-    </div>
-  </div>
-  <div class="message-wrapper">
-    <div class="container">
-      <div class="heading">
-        <h2>さぁ、あなたもProgateでプログラミングを学んでみませんか?</h2>
-        <h3>Let's learn to code, learn to be creative!</h3>
-      </div>
-      <span class="btn message">さっそく開発する</span>
-    </div>
-  </div>
-  <footer>
-    <div class="container">
-      <img src="https://prog-8.com/images/html/advanced/footer_logo.png">
-      <p>Learn to Code, Learn to be Creative.</p>
-    </div>
-  </footer>
-</body>
+<html lang="ja"">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Document</title>
+
+        <script type="text/javascript">
+            // OS識別用
+            let os;
+
+            // DOM構築完了イベントハンドラ登録
+            window.addEventListener("DOMContentLoaded", init);
+
+            // 初期化
+            function init() {
+                // 簡易的なOS判定
+                os = detectOSSimply();
+                if (os == "iphone") {
+                    // safari用。DeviceOrientation APIの使用をユーザに許可して貰う
+                    document.querySelector("#permit").addEventListener("click", permitDeviceOrientationForSafari);
+
+                    window.addEventListener(
+                        "deviceorientation",
+                        orientation,
+                        true
+                    );
+                } else if (os == "android") {
+                    window.addEventListener(
+                        "deviceorientationabsolute",
+                        orientation,
+                        true
+                    );
+                } else{
+                    window.alert("PC未対応サンプル");
+                }
+            }
+
+
+            // ジャイロスコープと地磁気をセンサーから取得
+            function orientation(event) {
+                let absolute = event.absolute;
+                let alpha = event.alpha;
+                let beta = event.beta;
+                let gamma = event.gamma;
+
+                let degrees;
+                if(os == "iphone") {
+                    // webkitCompasssHeading値を採用
+                    degrees = event.webkitCompassHeading;
+
+                }else{
+                    // deviceorientationabsoluteイベントのalphaを補正
+                    degrees = compassHeading(alpha, beta, gamma);
+                }
+
+                let direction;
+                if (
+                    (degrees > 337.5 && degrees < 360) ||
+                    (degrees > 0 && degrees < 22.5)
+                ) {
+                    direction = "北";
+                } else if (degrees > 22.5 && degrees < 67.5) {
+                    direction = "北東";
+                } else if (degrees > 67.5 && degrees < 112.5) {
+                    direction = "東";
+                } else if (degrees > 112.5 && degrees < 157.5) {
+                    direction = "東南";
+                } else if (degrees > 157.5 && degrees < 202.5) {
+                    direction = "南";
+                } else if (degrees > 202.5 && degrees < 247.5) {
+                    direction = "南西";
+                } else if (degrees > 247.5 && degrees < 292.5) {
+                    direction = "西";
+                } else if (degrees > 292.5 && degrees < 337.5) {
+                    direction = "北西";
+                }
+
+                document.querySelector("#direction").innerHTML =
+                    direction + " : " + degrees;
+                document.querySelector("#absolute").innerHTML = absolute;
+                document.querySelector("#alpha").innerHTML = alpha;
+                document.querySelector("#beta").innerHTML = beta;
+                document.querySelector("#gamma").innerHTML = gamma;
+            }
+
+            // 端末の傾き補正（Android用）
+            // https://www.w3.org/TR/orientation-event/
+            function compassHeading(alpha, beta, gamma) {
+                var degtorad = Math.PI / 180; // Degree-to-Radian conversion
+
+                var _x = beta ? beta * degtorad : 0; // beta value
+                var _y = gamma ? gamma * degtorad : 0; // gamma value
+                var _z = alpha ? alpha * degtorad : 0; // alpha value
+
+                var cX = Math.cos(_x);
+                var cY = Math.cos(_y);
+                var cZ = Math.cos(_z);
+                var sX = Math.sin(_x);
+                var sY = Math.sin(_y);
+                var sZ = Math.sin(_z);
+
+                // Calculate Vx and Vy components
+                var Vx = -cZ * sY - sZ * sX * cY;
+                var Vy = -sZ * sY + cZ * sX * cY;
+
+                // Calculate compass heading
+                var compassHeading = Math.atan(Vx / Vy);
+
+                // Convert compass heading to use whole unit circle
+                if (Vy < 0) {
+                    compassHeading += Math.PI;
+                } else if (Vx < 0) {
+                    compassHeading += 2 * Math.PI;
+                }
+
+                return compassHeading * (180 / Math.PI); // Compass Heading (in degrees)
+            }
+
+            // 簡易OS判定
+            function detectOSSimply() {
+                let ret;
+                if (
+                    navigator.userAgent.indexOf("iPhone") > 0 ||
+                    navigator.userAgent.indexOf("iPad") > 0 ||
+                    navigator.userAgent.indexOf("iPod") > 0
+                ) {
+                    // iPad OS13のsafariはデフォルト「Macintosh」なので別途要対応
+                    ret = "iphone";
+                } else if (navigator.userAgent.indexOf("Android") > 0) {
+                    ret = "android";
+                } else {
+                    ret = "pc";
+                }
+
+                return ret;
+            }
+
+            // iPhone + Safariの場合はDeviceOrientation APIの使用許可をユーザに求める
+            function permitDeviceOrientationForSafari() {
+                DeviceOrientationEvent.requestPermission()
+                    .then(response => {
+                        if (response === "granted") {
+                            window.addEventListener(
+                                "deviceorientation",
+                                detectDirection
+                            );
+                        }
+                    })
+                    .catch(console.error);
+            }
+        </script>
+    </head>
+
+    <body>
+        <ul>
+            <input type="button" id="permit" value="SafariでDeviceOrientationを許可"/>
+            <li>【方角】<span id="direction"></span></li>
+            <li>【absolute】<span id="absolute"></span></li>
+            <li>【alpha】<span id="alpha"></span></li>
+            <li>【beta】<span id="beta"></span></li>
+            <li>【gamma】<span id="gamma"></span></li>
+        </ul>
+    </body>
 </html>
