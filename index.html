@@ -18,7 +18,8 @@
 			                        + address.result.prefecture.pname
 			                        + address.result.municipality.mname
 			                        + address.result.local[0].section;
-			        alert(address);
+			      //window.alert(address);
+					address.textContent = address;
 			    });
 
 			</script>
@@ -183,5 +184,8 @@
 			  <p id="lat">緯度: </p>
 			  <p id="lon">経度: </p>
 			  <p id="address"></p>
+
+			  <p id="test">v2</p>
+
     </body>
 </html>
