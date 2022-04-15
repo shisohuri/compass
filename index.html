@@ -6,6 +6,56 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title>Document</title>
 
+			<script>
+			  /** 変換表を入れる場所 */
+			  var GSI = {};
+
+			  const latEle = document.querySelector('#lat');
+			  const lonEle = document.querySelector('#lon');
+			  const addressEle = document.querySelector('#address');
+			  const gpsButton = document.querySelector('#get-gps');
+			  /**
+			   * 緯度経度を画面表示
+			   */
+			  const setGeoLoc = (coords) => {
+			    latEle.textContent = `緯度: ${coords.latitude}`;
+			    lonEle.textContent = `経度: ${coords.longitude}`;
+			  }
+			  /**
+			   * 緯度経度から住所を取得して表示
+			   */
+			  const getAddress = async (coords) => {
+			    // 逆ジオコーディング API
+			    const url = new URL('https://mreversegeocoder.gsi.go.jp/reverse-geocoder/LonLatToAddress');
+			    url.searchParams.set('lat', 35.66578880645705);
+			    url.searchParams.set('lon', 140.16683653487794);
+			    const res = await fetch(url.toString());
+			    const json = await res.json();
+			    const data = json.results;
+,
+			    // 変換表から都道府県などを取得
+			    const muniData = GSI.MUNI_ARRAY[json.results.muniCd];
+			    // 都道府県コード,都道府県名,市区町村コード,市区町村名 に分割
+			    const [prefCode, pref, muniCode, city] = muniData.split(',');
+
+			    // 画面に反映
+			    address.textContent = `${pref} ${city} ${data.lv01Nm}`;
+			  };
+			  /**
+			   * 位置情報 API の実行(イベントリスナ)
+			   */
+			  gpsButton.addEventListener('click', () => {
+			    navigator.geolocation.getCurrentPosition(
+			      geoLoc => {
+			        setGeoLoc(geoLoc.coords);
+			        getAddress(geoLoc.coords);
+			      },
+			      err => console.error({err}),
+			    );
+			  });
+			</script>
+			<script src="https://maps.gsi.go.jp/js/muni.js"></script>  <!-- 変換表の読込 -->
+
         <script type="text/javascript">
             // OS識別用
             let os;
@@ -33,7 +83,7 @@
                         true
                     );
                 } else{
-                    window.alert("PC未対応サンプル");
+                    window.alert("PC未対応");
                 }
             }
 
@@ -162,5 +212,9 @@
             <li>【beta】<span id="beta"></span></li>
             <li>【gamma】<span id="gamma"></span></li>
         </ul>
+
+			  <p id="lat">緯度: </p>
+			  <p id="lon">経度: </p>
+			  <p id="address"></p>
     </body>
 </html>
