@@ -26,9 +26,9 @@
 			   */
 			  const getAddress = async (coords) => {
 			    // 逆ジオコーディング API
-			    const url = new URL('https://mreversegeocoder.gsi.go.jp/reverse-geocoder/LonLatToAddress');
-			    url.searchParams.set('lat', '35.66578880645705');
-			    url.searchParams.set('lon', '140.16683653487794');
+			    const url = new URL('https://mreversegeocoder.gsi.go.jp/reverse-geocoder/LonLatToAddress?lat=35.66578880645705&lon=140.16683653487794');
+	//		    url.searchParams.set('lat', '35.66578880645705');
+	//		    url.searchParams.set('lon', '140.16683653487794');
 			    const res = await fetch(url.toString());
 			    const json = await res.json();
 			    const data = json.results;
