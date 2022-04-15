@@ -24,7 +24,7 @@
 			  /**
 			   * 緯度経度から住所を取得して表示
 			   */
-			  const getAddress = async (coords) => {
+	//		  const getAddress = async (coords) => {
 			    // 逆ジオコーディング API
 				window.alert('test');
 			    const url = new URL('https://mreversegeocoder.gsi.go.jp/reverse-geocoder/LonLatToAddress?lat=35.66578880645705&lon=140.16683653487794');
@@ -41,7 +41,7 @@
 
 			    // 画面に反映
 			    address.textContent = `${pref} ${city} ${data.lv01Nm}`;
-			  };
+		//	  };
 			  /**
 			   * 位置情報 API の実行(イベントリスナ)
 			   */
