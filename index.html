@@ -8,8 +8,6 @@
 
 			<script>
 
-				let address = document.getElementById('address').textContent;
-
 			    var url = "https://aginfo.cgk.affrc.go.jp/ws/rgeocode.php?json&lat=35.66578880645705&lon=140.16683653487794";
 			    console.log(url);
 			    fetch(url)
@@ -22,7 +20,7 @@
 			                        + address.result.municipality.mname
 			                        + address.result.local[0].section;
 			      //window.alert(address);
-					document.getElementById('address').textContent = address;
+					document.querySelector("#address").innerHTML = address;
 			    });
 
 			</script>
@@ -186,9 +184,9 @@
 
 			  <p id="lat">緯度: </p>
 			  <p id="lon">経度: </p>
-			  <p id="address"></p>
+			  <span id="address"></span>
 
-			  <p id="test">v5</p>
+			  <p id="test">v6</p>
 
     </body>
 </html>
