@@ -76,9 +76,10 @@
 			    var url = "https://aginfo.cgk.affrc.go.jp/ws/rgeocode.php?json&lat="+lat+"&lon="+lon;
 			    console.log(url);
 
+			alert("test");
  			const response = await fetch(url);
  			const address = await response.json();
-
+			alert("test2");
 
 			  /*  fetch(url)
 			        .then(function(response) {
@@ -262,7 +263,7 @@
 			<br/>
 			<br/>
 
-			  <p id="test">v1</p>
+			  <p id="test">v2</p>
 
     </body>
 </html>
