@@ -66,13 +66,13 @@
 				}
 
 
-			RGeocoding();
+			RGeocoding("35.66578880645705","140.16683653487794");
 
 
 			//逆ジオコーディング
-			function RGeocoding(){
+			function RGeocoding(lat ,lon){
 
-			    var url = "https://aginfo.cgk.affrc.go.jp/ws/rgeocode.php?json&lat=35.66578880645705&lon=140.16683653487794";
+			    var url = "https://aginfo.cgk.affrc.go.jp/ws/rgeocode.php?json&lat="+lat+"&lon="+lon;
 			    console.log(url);
 			    fetch(url)
 			        .then(function(response) {
@@ -254,7 +254,7 @@
 			<br/>
 			<br/>
 
-			  <p id="test">v7</p>
+			  <p id="test">v8</p>
 
     </body>
 </html>
