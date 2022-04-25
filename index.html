@@ -66,7 +66,7 @@
 				}
 
 
-			RGeocoding("35.66578880645705","140.16683653487794");
+			document.querySelector("#address").innerHTML = RGeocoding("35.66578880645705","140.16683653487794");
 
 
 			//逆ジオコーディング
@@ -84,7 +84,8 @@
 			                        + address.result.municipality.mname
 			                        + address.result.local[0].section;
 			      //window.alert(address);
-					document.querySelector("#address").innerHTML = address;
+				//	document.querySelector("#address").innerHTML = address;
+				return address;
 			    });
 
 			}
@@ -254,7 +255,7 @@
 			<br/>
 			<br/>
 
-			  <p id="test">v8</p>
+			  <p id="test">v9</p>
 
     </body>
 </html>
