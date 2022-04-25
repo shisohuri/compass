@@ -71,15 +71,20 @@
 
 
 			//逆ジオコーディング
-			function RGeocoding(lat ,lon){
+			async function RGeocoding(lat ,lon){
 
 			    var url = "https://aginfo.cgk.affrc.go.jp/ws/rgeocode.php?json&lat="+lat+"&lon="+lon;
 			    console.log(url);
-			    fetch(url)
+
+ 			const response = await fetch(url);
+ 			const address = await response.json();
+
+
+			  /*  fetch(url)
 			        .then(function(response) {
 			            return response.json();
 			    })
-			    .then(function(address) {
+			    .then(function(address) {*/
 			        var address = " 住所："
 			                        + address.result.prefecture.pname
 			                        + address.result.municipality.mname
@@ -88,7 +93,7 @@
 				//	document.querySelector("#address").innerHTML = address;
 				alert(address);
 				return address;
-			    });
+			  /*  });*/
 
 			}
 
@@ -257,7 +262,7 @@
 			<br/>
 			<br/>
 
-			  <p id="test">v0</p>
+			  <p id="test">v1</p>
 
     </body>
 </html>
