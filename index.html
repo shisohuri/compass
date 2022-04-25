@@ -66,11 +66,11 @@
 				}
 
 
-
+			RGeocoding();
 
 
 			//逆ジオコーディング
-
+			function RGeocoding(){
 
 			    var url = "https://aginfo.cgk.affrc.go.jp/ws/rgeocode.php?json&lat=35.66578880645705&lon=140.16683653487794";
 			    console.log(url);
@@ -86,6 +86,8 @@
 			      //window.alert(address);
 					document.querySelector("#address").innerHTML = address;
 			    });
+
+			}
 
 			</script>
 
@@ -252,7 +254,7 @@
 			<br/>
 			<br/>
 
-			  <p id="test">v6</p>
+			  <p id="test">v7</p>
 
     </body>
 </html>
