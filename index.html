@@ -65,8 +65,8 @@
 					alert("ブラウザが位置情報取得に対応していません");
 				}
 
-		//	document.querySelector("#address").innerHTML = RGeocoding("35.66578880645705","140.16683653487794");
-			alert(RGeocoding("35.66578880645705","140.16683653487794"));
+			document.querySelector("#address").innerHTML = RGeocoding("35.66578880645705","140.16683653487794");
+	//		alert(RGeocoding("35.66578880645705","140.16683653487794"));
 
 			//逆ジオコーディング 緯度経度渡すと住所返すマン
 			function RGeocoding(lat ,lon){
@@ -84,7 +84,7 @@
 				};
 
 				request.send();
-				var retStr;
+				return retStr;
 			}
 
 
