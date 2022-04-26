@@ -69,18 +69,17 @@
 			alert(RGeocoding("35.66578880645705","140.16683653487794"));
 
 			function RGeocoding(lat ,lon){
-				var app = Application.currentApplication();
-				app.includeStandardAdditions = true;
+				var request = new XMLHttpRequest();
 
-				var ans = app.doShellScript('curl -s ' + "https://aginfo.cgk.affrc.go.jp/ws/rgeocode.php?json&lat="+lat+"&lon="+lon);
+				request.open('GET', "https://aginfo.cgk.affrc.go.jp/ws/rgeocode.php?json&lat="+lat+"&lon="+lon, true);
+				request.responseType = 'json';
 
-				var jsonData = JSON.parse(ans);
+				request.onload = function () {
+				  var data = this.response;
+				  console.log(data);
+				};
 
-				var ret = jsonData.result.prefecture.pname
-			                + jsonData.result.municipality.mname
-			                + jsonData.result.local[0].section;
-
-				return ret;
+				request.send();
 			}
 
 
@@ -264,7 +263,7 @@
 			<br/>
 			<br/>
 
-			  <p id="test">v5</p>
+			  <p id="test">v6</p>
 
     </body>
 </html>
