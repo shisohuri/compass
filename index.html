@@ -77,6 +77,9 @@
 				request.onload = function () {
 				  var data = this.response;
 				  console.log(data);
+				  console.log(data.result.prefecture.pname
+			                + data.result.municipality.mname
+			                + data.result.local[0].section);
 				};
 
 				request.send();
@@ -263,7 +266,7 @@
 			<br/>
 			<br/>
 
-			  <p id="test">v6</p>
+			  <p id="test">v7</p>
 
     </body>
 </html>
