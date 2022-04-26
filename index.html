@@ -76,15 +76,11 @@
 	 			const address = await response.json();
 
 
-				console.log(address.result.prefecture.pname
+				ver ret = await String(address.result.prefecture.pname
 			                + address.result.municipality.mname
 			                + address.result.local[0].section);
 
-
-			       return	address.result.prefecture.pname
-			                + address.result.municipality.mname
-			                + address.result.local[0].section;
-
+			       return	ret;
 			}
 
 
@@ -253,7 +249,7 @@
 			<br/>
 			<br/>
 
-			  <p id="test">v9</p>
+			  <p id="test">v0</p>
 
     </body>
 </html>
