@@ -65,10 +65,8 @@
 					alert("ブラウザが位置情報取得に対応していません");
 				}
 
-alert("test1");
-			//document.querySelector("#address").innerHTML = RGeocoding("35.66578880645705","140.16683653487794");
-			alert(RGeocoding("35.66578880645705","140.16683653487794"));
-alert("test2");
+			document.querySelector("#address").innerHTML = RGeocoding("35.66578880645705","140.16683653487794");
+		//	alert(RGeocoding("35.66578880645705","140.16683653487794"));
 
 			//逆ジオコーディング
 			async function RGeocoding(lat ,lon){
@@ -76,24 +74,24 @@ alert("test2");
 			    var url = "https://aginfo.cgk.affrc.go.jp/ws/rgeocode.php?json&lat="+lat+"&lon="+lon;
 			    console.log(url);
 
-			alert("test3");
+		//	alert("test3");
  			const response = await fetch(url);
  			const address = await response.json();
-			alert("test4");
+		//	alert("test4");
 
 			  /*  fetch(url)
 			        .then(function(response) {
 			            return response.json();
 			    })
 			    .then(function(address) {*/
-			        var address2 = " 住所："
+			        var retAddress = " 住所："
 			                        + address.result.prefecture.pname
 			                        + address.result.municipality.mname
 			                        + address.result.local[0].section;
 			      //window.alert(address);
 				//	document.querySelector("#address").innerHTML = address;
-				alert(address2);
-				return address2;
+				//alert(retAddress);
+				return retAddress;
 			  /*  });*/
 
 			}
@@ -263,7 +261,7 @@ alert("test2");
 			<br/>
 			<br/>
 
-			  <p id="test">v3</p>
+			  <p id="test">v4</p>
 
     </body>
 </html>
