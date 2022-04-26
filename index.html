@@ -76,15 +76,16 @@
 				request.responseType = 'json';
 
 				request.onload = function () {
-				  var data = this.response;
+					var data = this.response;
 
-				  var retStr = data.result.prefecture.pname
-			                + data.result.municipality.mname
-			                + data.result.local[0].section;
+					var retStr = data.result.prefecture.pname
+				              + data.result.municipality.mname
+				              + data.result.local[0].section;
+		
+					return retStr;
 				};
 
 				request.send();
-				return retStr;
 			}
 
 
@@ -268,7 +269,7 @@
 			<br/>
 			<br/>
 
-			  <p id="test">v8</p>
+			  <p id="test">v9</p>
 
     </body>
 </html>
