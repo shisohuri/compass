@@ -18,29 +18,8 @@
 					// 緯度・経度を表示
 					document.querySelector("#lat").innerHTML = lat;
 					document.querySelector("#lon").innerHTML = lon;
-/*
-					// google map へ表示するための設定
-					latlon = new google.maps.LatLng(lat,lon);
-					map = document.getElementById("map");
-					opt = {
-						zoom: 17,
-						center: latlon,
-						mapTypeId: google.maps.MapTypeId.ROADMAP,
-						scrollwheel: false,
-						scaleControl: true,
-						disableDoubleClickZoom: true,
-						draggable: false
-					};
 
-					// google map 表示
-					mapObj = new google.maps.Map(map, opt);
-
-					// マーカーを設定
-					marker = new google.maps.Marker({
-						position: latlon,
-						map: mapObj
-					});
-*/
+					RGeocoding(lat　,lon ,"#fromaddress");
 				}
 
 				// エラー時に呼び出される関数
@@ -65,30 +44,7 @@
 					alert("ブラウザが位置情報取得に対応していません");
 				}
 
-	//		document.querySelector("#address").innerHTML = RGeocoding("35.66578880645705","140.16683653487794");
 			RGeocoding("35.66578880645705","140.16683653487794" ,"#address")
-
-			//逆ジオコーディング 緯度経度渡すと住所返すマン
-	/*		function RGeocoding(lat ,lon){
-				var request = new XMLHttpRequest();
-
-				request.open('GET', "https://aginfo.cgk.affrc.go.jp/ws/rgeocode.php?json&lat="+lat+"&lon="+lon, true);
-				request.responseType = 'json';
-
-				request.onload = function () {
-					var data = this.response;
-
-					var retStr = data.result.prefecture.pname
-				              + data.result.municipality.mname
-				              + data.result.local[0].section;
-
-					console.log(retStr);
-					return retStr;
-					
-				};
-
-				request.send();
-			}*/
 
 
 			//逆ジオコーディング 緯度経度渡すと住所返すマン
@@ -268,10 +224,12 @@
 			  緯度: <p id="lat"></p>
 			  経度: <p id="lon"></p>
 			  目的地:<span id="address"></span>
+			  現在地:<span id="fromaddress"></span>
+
 			<br/>
 			<br/>
 
-			  <p id="test">v1</p>
+			  <p id="test">v2</p>
 
     </body>
 </html>
