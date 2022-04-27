@@ -50,7 +50,7 @@
 					alert("ブラウザが位置情報取得に対応していません");
 				}
 
-			RGeocoding("35.66578880645705","140.16683653487794" ,"#address")
+			RGeocoding("35.68971699135241, 139.69211818004416" ,"#address")
 
 
 			//逆ジオコーディング 緯度経度渡すと住所返すマン
@@ -245,7 +245,7 @@
 		  lng1 *= R;
 		  lat2 *= R;
 		  lng2 *= R;
-		  return 6371 * Math.acos(Math.cos(lat1) * Math.cos(lat2) * Math.cos(lng2 - lng1) + Math.sin(lat1) * Math.sin(lat2));
+		  return Math.ceil(6371 * Math.acos(Math.cos(lat1) * Math.cos(lat2) * Math.cos(lng2 - lng1) + Math.sin(lat1) * Math.sin(lat2)) *1000) /1000 +"km";
 		}
 
 
@@ -273,7 +273,7 @@
 			<br/>
 			<br/>
 
-			  <p id="test">v8</p>
+			  <p id="test">v9</p>
 
     </body>
 </html>
