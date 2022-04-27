@@ -8,7 +8,8 @@
 
 			<script>
 
-	
+			var fromlat = 0;
+			var fromlon = 0;
 
 
 
@@ -17,14 +18,14 @@
 				function setLocation(pos){
 
 					// 緯度・経度を取得
-					lat = pos.coords.latitude;
-					lon = pos.coords.longitude;
+					fromlat = pos.coords.latitude;
+					fromlon = pos.coords.longitude;
 
 					// 緯度・経度を表示
-					document.querySelector("#lat").innerHTML = lat;
-					document.querySelector("#lon").innerHTML = lon;
+					document.querySelector("#lat").innerHTML = fromlat;
+					document.querySelector("#lon").innerHTML = fromlon;
 
-					RGeocoding(lat　,lon ,"#fromaddress");
+					RGeocoding(fromlat　,fromlon ,"#fromaddress");
 				}
 
 				// エラー時に呼び出される関数
@@ -44,7 +45,7 @@
 						"timeout": 10000,
 						"maximumAge": 0,
 					};
-					navigator.geolocation.watchPosition(setLocation, showErr, opt);
+					navigator.geolocation.getCurrentPosition(setLocation, showErr, opt);
 				}else{
 					alert("ブラウザが位置情報取得に対応していません");
 				}
@@ -227,21 +228,21 @@
 
 			//alert(latlon[0]);
 
-			RGeocoding(latlon[0],latlon[1] ,"#address")
+			RGeocoding(latlon[0],latlon[1] ,"#address");
+
+			document.querySelector("#distance").innerHTML = distance(latlon[0], latlon[1], fromlat, fromlon);
 		}
 
-		function distance($lat1, $lon1, $lat2, $lon2) {
-		    // 緯度経度をラジアンに変換
-		    $radLat1 = deg2rad($lat1); // 緯度１
-		    $radLon1 = deg2rad($lon1); // 経度１
-		    $radLat2 = deg2rad($lat2); // 緯度２
-		    $radLon2 = deg2rad($lon2); // 経度２
 
-		    $r = 6378137.0; // 赤道半径
+		//緯度経度から2地点間の距離 (km) を計算する
+		const R = Math.PI / 180;
 
-		    $averageLat = ($radLat1 - $radLat2) / 2;
-		    $averageLon = ($radLon1 - $radLon2) / 2;
-		    return $r * 2 * asin(sqrt(pow(sin($averageLat), 2) + cos($radLat1) * cos($radLat2) * pow(sin($averageLon), 2)));
+		function distance(lat1, lng1, lat2, lng2) {
+		  lat1 *= R;
+		  lng1 *= R;
+		  lat2 *= R;
+		  lng2 *= R;
+		  return 6371 * Math.acos(Math.cos(lat1) * Math.cos(lat2) * Math.cos(lng2 - lng1) + Math.sin(lat1) * Math.sin(lat2));
 		}
 
 
@@ -269,7 +270,7 @@
 			<br/>
 			<br/>
 
-			  <p id="test">v6</p>
+			  <p id="test">v7</p>
 
     </body>
 </html>
