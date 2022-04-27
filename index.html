@@ -45,7 +45,7 @@
 						"timeout": 10000,
 						"maximumAge": 0,
 					};
-					navigator.geolocation.watchPosition(setLocation, showErr, opt);
+					navigator.geolocation.getCurrentPosition(setLocation, showErr, opt);
 				}else{
 					alert("ブラウザが位置情報取得に対応していません");
 				}
