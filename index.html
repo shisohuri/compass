@@ -210,11 +210,12 @@
             }
 
 
-		let toCoordinate = document.getElementById('toCoordinate');
 
 		// テキストボックスの変更を検知
 		function inputChange(){
-		    
+
+			let toCoordinate = document.getElementById('toCoordinate');
+
 			alert(toCoordinate.value);
 
 			var latlon = toCoordinate.value.split(', ');
@@ -249,7 +250,7 @@
 			<br/>
 			<br/>
 
-			  <p id="test">v4</p>
+			  <p id="test">v5</p>
 
     </body>
 </html>
