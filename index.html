@@ -59,10 +59,13 @@
 				const response = await fetch("https://aginfo.cgk.affrc.go.jp/ws/rgeocode.php?json&lat="+lat+"&lon="+lon);
 	 			const address = await response.json();
 
-
-				var ret = await String(address.result.prefecture.pname
-			                + address.result.municipality.mname
-			                + address.result.local[0].section);
+				try {
+					var ret = await String(address.result.prefecture.pname
+				                + address.result.municipality.mname
+				                + address.result.local[0].section);
+				} catch (error) {
+					var ret = "取得できませんでした";
+				}
 
 			      document.querySelector(target).innerHTML = ret;
 			}
@@ -270,7 +273,7 @@
 			<br/>
 			<br/>
 
-			  <p id="test">v7</p>
+			  <p id="test">v8</p>
 
     </body>
 </html>
