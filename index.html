@@ -210,8 +210,6 @@
             }
 
 
-		let toCoordinate = document.getElementById('toCoordinate');
-		toCoordinate.addEventListener('change', inputChange);
 
 		// テキストボックスの変更を検知
 		function inputChange(){
@@ -225,7 +223,8 @@
 			//RGeocoding(latlon[0],latlon[1] ,"#address")
 		}
 
-
+		let toCoordinate = document.getElementById('toCoordinate');
+		toCoordinate.addEventListener('change', inputChange);
 
 
         </script>
