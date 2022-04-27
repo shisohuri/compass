@@ -210,6 +210,7 @@
             }
 
 
+		let toCoordinate = document.getElementById('toCoordinate');
 
 		// テキストボックスの変更を検知
 		function inputChange(){
@@ -223,8 +224,7 @@
 			//RGeocoding(latlon[0],latlon[1] ,"#address")
 		}
 
-		let toCoordinate = document.getElementById('toCoordinate');
-		toCoordinate.addEventListener('change', inputChange);
+
 
 
         </script>
@@ -245,11 +245,11 @@
 			  目的地:<p id="address"></p>
 			  現在地:<p id="fromaddress"></p>
 
-<label>目的地座標：<input type="text" size="40" id="toCoordinate" value="35.68971699135241, 139.69211818004416"></label>
+<label>目的地座標：<input type="text" size="40" id="toCoordinate" value="35.68971699135241, 139.69211818004416" onchange="inputChange()"></label>
 			<br/>
 			<br/>
 
-			  <p id="test">v3</p>
+			  <p id="test">v4</p>
 
     </body>
 </html>
