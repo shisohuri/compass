@@ -150,6 +150,9 @@
                 document.querySelector("#alpha").innerHTML = alpha;
                 document.querySelector("#beta").innerHTML = beta;
                 document.querySelector("#gamma").innerHTML = gamma;
+
+		document.getElementById("#connpass").style.transform = "rotate(" + degrees + "deg)";
+
             }
 
             // 端末の傾き補正（Android用）
@@ -253,6 +256,10 @@
     </head>
 
     <body>
+
+	<img id="connpass" src="connpass.png" width="70%" style="text-align: center;"/><br />
+
+
         <ul>
             <input type="button" id="permit" value="SafariでDeviceOrientationを許可"/>
             <li>【方角】<span id="direction"></span></li>
@@ -273,7 +280,7 @@
 			<br/>
 			<br/>
 
-			  <p id="test">v9</p>
+			  <p id="test">v0</p>
 
     </body>
 </html>
