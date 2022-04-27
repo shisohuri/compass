@@ -92,7 +92,7 @@
 
 
 			//逆ジオコーディング 緯度経度渡すと住所返すマン
-			async function RGeocoding(lat ,lon ,target) :  Promise<string>{
+			async function RGeocoding(lat ,lon ,target){
 
 				const response = await fetch("https://aginfo.cgk.affrc.go.jp/ws/rgeocode.php?json&lat="+lat+"&lon="+lon);
 	 			const address = await response.json();
