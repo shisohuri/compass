@@ -66,10 +66,10 @@
 				}
 
 	//		document.querySelector("#address").innerHTML = RGeocoding("35.66578880645705","140.16683653487794");
-			alert(RGeocoding("35.66578880645705","140.16683653487794"));
+			RGeocoding("35.66578880645705","140.16683653487794" ,document.querySelector("#address").innerHTML)
 
 			//逆ジオコーディング 緯度経度渡すと住所返すマン
-			function RGeocoding(lat ,lon){
+	/*		function RGeocoding(lat ,lon){
 				var request = new XMLHttpRequest();
 
 				request.open('GET', "https://aginfo.cgk.affrc.go.jp/ws/rgeocode.php?json&lat="+lat+"&lon="+lon, true);
@@ -88,11 +88,11 @@
 				};
 
 				request.send();
-			}
+			}*/
 
 
 			//逆ジオコーディング 緯度経度渡すと住所返すマン
-		/*	async function RGeocoding(lat ,lon) :  Promise<string>{
+			async function RGeocoding(lat ,lon ,target) :  Promise<string>{
 
 				const response = await fetch("https://aginfo.cgk.affrc.go.jp/ws/rgeocode.php?json&lat="+lat+"&lon="+lon);
 	 			const address = await response.json();
@@ -102,8 +102,8 @@
 			                + address.result.municipality.mname
 			                + address.result.local[0].section);
 
-			       return ret;
-			}*/
+			       target = ret;
+			}
 
 
 			</script>
@@ -271,7 +271,7 @@
 			<br/>
 			<br/>
 
-			  <p id="test">v0</p>
+			  <p id="test">v1</p>
 
     </body>
 </html>
