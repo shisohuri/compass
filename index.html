@@ -27,8 +27,15 @@
 
 					RGeocoding(fromlat　,fromlon ,"#fromaddress");
 
+					//目的地への角度
+					var degrees = Math.round(direction(fromlat, fromlon, 35.68971699135241, 139.69211818004416))
+
+					//コンパスの針コントロール
 					document.getElementById("needle").style.transform 
-						= "rotate("+ Math.round(direction(fromlat, fromlon, 35.68971699135241, 139.69211818004416))+"deg)";
+						= "rotate("+ degrees +"deg)";
+
+					//目的地方角記載の更新
+					document.querySelector("#direction").innerHTML = happo(degrees);
 
 
 				}
@@ -160,7 +167,6 @@
                 document.querySelector("#gamma").innerHTML = gamma;
 
 		document.getElementById("connpass").style.transform = "rotate(" + Math.round(360 -degrees) + "deg)";
-		//document.getElementById("needle").style.transform = "rotate(" + Math.round(360 -degrees) + "deg)";
 		
 
 
@@ -276,9 +282,34 @@
 			  return dirN0;
 		}
 
+		座標から八方への変換
+		function happo(degrees){
 
-			
+			var direction ="";
 
+			  if (
+	                    (degrees > 337.5 && degrees < 360) ||
+	                    (degrees > 0 && degrees < 22.5)
+	                ) {
+	                    direction = "北";
+	                } else if (degrees > 22.5 && degrees < 67.5) {
+	                    direction = "北東";
+	                } else if (degrees > 67.5 && degrees < 112.5) {
+	                    direction = "東";
+	                } else if (degrees > 112.5 && degrees < 157.5) {
+	                    direction = "東南";
+	                } else if (degrees > 157.5 && degrees < 202.5) {
+	                    direction = "南";
+	                } else if (degrees > 202.5 && degrees < 247.5) {
+	                    direction = "南西";
+	                } else if (degrees > 247.5 && degrees < 292.5) {
+	                    direction = "西";
+	                } else if (degrees > 292.5 && degrees < 337.5) {
+	                    direction = "北西";
+	                }
+
+			return direction;
+		}
         </script>
     </head>
 
@@ -296,15 +327,15 @@
 				padding: 10px;
 			">
 
+			<img id="needle" src="https://raw.githubusercontent.com/shisohuri/compass/351d1f769ca94f288d2a42bc51b062a13564267b/needle.png" 
+			 style="
+				width: 100%;
+			" />
 
 
 		</div>
 
 
-			<img id="needle" src="https://raw.githubusercontent.com/shisohuri/compass/351d1f769ca94f288d2a42bc51b062a13564267b/needle.png" 
-			 style="
-				width: 100%;
-			" />
 
 
 	</center>
@@ -330,7 +361,7 @@
 			<br/>
 			<br/>
 
-			  <p id="test">v0</p>
+			  <p id="test">v1</p>
 
     </body>
 </html>
