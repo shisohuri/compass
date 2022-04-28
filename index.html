@@ -54,7 +54,7 @@
 			
 
 			document.getElementById("needle").style.transform 
-				= "rotate(" + Math.round(direction( fromlat,  fromlon, 35.68971699135241, 139.69211818004416)) + "deg)";
+				= "rotate(" + 90 + "deg)";
 
 
 			//逆ジオコーディング 緯度経度渡すと住所返すマン
@@ -284,9 +284,13 @@
 				width: 70%;
 				height: 70vw;
 				padding: 10px;
-			"/>
+			">
 
-			<img id="needle" src="https://github.com/shisohuri/compass/blob/351d1f769ca94f288d2a42bc51b062a13564267b/needle.png?raw=true"  width="100%">
+			<img id="needle" src="https://github.com/shisohuri/compass/blob/351d1f769ca94f288d2a42bc51b062a13564267b/needle.png?raw=true"  width="100%"
+			style="
+				-moz-box-sizing: border-box;
+				box-sizing: border-box;
+			" />
 
 		</div>
 	</center>
@@ -311,7 +315,7 @@
 			<br/>
 			<br/>
 
-			  <p id="test">v7</p>
+			  <p id="test">v8</p>
 
     </body>
 </html>
