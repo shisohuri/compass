@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <title>Document</title>
+        <title>目的地コンパス</title>
 
 			<script>
 
@@ -26,6 +26,8 @@
 					document.querySelector("#lon").innerHTML = fromlon;
 
 					RGeocoding(fromlat　,fromlon ,"#fromaddress");
+
+					document.getElementById("needle").style.transform = "rotate(90deg)";
 				}
 
 				// エラー時に呼び出される関数
@@ -45,7 +47,7 @@
 						"timeout": 10000,
 						"maximumAge": 0,
 					};
-					navigator.geolocation.getCurrentPosition(setLocation, showErr, opt);
+					navigator.geolocation.watchPosition(setLocation, showErr, opt);
 				}else{
 					alert("ブラウザが位置情報取得に対応していません");
 				}
@@ -156,7 +158,7 @@
 
 		document.getElementById("connpass").style.transform = "rotate(" + Math.round(360 -degrees) + "deg)";
 		//document.getElementById("needle").style.transform = "rotate(" + Math.round(360 -degrees) + "deg)";
-		document.getElementById("needle").style.transform = "rotate(90deg)";
+		
 
 
             }
@@ -317,6 +319,7 @@
 			  経度: <p id="lon"></p>
 			  目的地:<p id="address"></p>
 			  現在地:<p id="fromaddress"></p>
+			  方角:<p id="direction"></p>
 			  直線距離:<p id="distance"></p>
 
 
@@ -324,7 +327,7 @@
 			<br/>
 			<br/>
 
-			  <p id="test">v8</p>
+			  <p id="test">v9</p>
 
     </body>
 </html>
