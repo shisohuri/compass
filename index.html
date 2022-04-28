@@ -27,7 +27,10 @@
 
 					RGeocoding(fromlat　,fromlon ,"#fromaddress");
 
-					document.getElementById("needle").style.transform = "rotate(90deg)";
+					document.getElementById("needle").style.transform 
+						= "rotate("+ Math.round(direction(fromlat, fromlon, 35.68971699135241, 139.69211818004416))+"deg)";
+
+
 				}
 
 				// エラー時に呼び出される関数
@@ -327,7 +330,7 @@
 			<br/>
 			<br/>
 
-			  <p id="test">v9</p>
+			  <p id="test">v0</p>
 
     </body>
 </html>
