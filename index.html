@@ -151,7 +151,7 @@
                 document.querySelector("#beta").innerHTML = beta;
                 document.querySelector("#gamma").innerHTML = gamma;
 
-		document.getElementById("connpass").style.transform = "rotate(" + Math.round(degrees) + "deg)";
+		document.getElementById("connpass").style.transform = "rotate(" + Math.round(360 -degrees) + "deg)";
 
             }
 
@@ -251,6 +251,19 @@
 		  return Math.ceil(6371 * Math.acos(Math.cos(lat1) * Math.cos(lat2) * Math.cos(lng2 - lng1) + Math.sin(lat1) * Math.sin(lat2)) *1000) /1000 +"km";
 		}
 
+		 // 緯度経度 lat1, lng1 の点を出発として、緯度経度 lat2, lng2 への方位
+		function direction(lat1, lng1, lat2, lng2) {
+
+		  // 北を０度で右回りの角度０～３６０度
+		  var Y = Math.cos(lng2 * Math.PI / 180) * Math.sin(lat2 * Math.PI / 180 - lat1 * Math.PI / 180);
+		  var X = Math.cos(lng1 * Math.PI / 180) * Math.sin(lng2 * Math.PI / 180) - Math.sin(lng1 * Math.PI / 180) * Math.cos(lng2 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180 - lat1 * Math.PI / 180);
+		  var dirE0 = 180 * Math.atan2(Y, X) / Math.PI; // 東向きが０度の方向
+		  if (dirE0 < 0) {
+		    dirE0 = dirE0 + 360; //0～360 にする。
+		  }
+		  var dirN0 = (dirE0 + 90) % 360; //(dirE0+90)÷360の余りを出力 北向きが０度の方向
+		  return dirN0;
+		}
 
         </script>
     </head>
@@ -280,7 +293,7 @@
 			<br/>
 			<br/>
 
-			  <p id="test">v2</p>
+			  <p id="test">v3</p>
 
     </body>
 </html>
