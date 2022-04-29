@@ -220,11 +220,11 @@
 			let toCoordinate = document.getElementById('toCoordinate');
 
 			//入力座標解析
-			try{
-				var latlon = toCoordinate.value.split(', ');
-			} catch (error) {
+			var latlon = toCoordinate.value.split(', ');
+			
+			if (latlon.length != 2) {
 				alert("入力形式が異常です。「緯度, 経度」の形式で入力してください");
-				toCoordinate.value = tolat+', '+tolon
+				toCoordinate.value = tolat+', '+tolon;
 			}
 			
 			//目的地の記録
@@ -358,7 +358,7 @@
 			<br/>
 			<br/>
 
-			  <p id="test">v8</p>
+			  <p id="test">v9</p>
 
     </body>
 </html>
