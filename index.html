@@ -315,7 +315,7 @@
         </script>
     </head>
 
-    <body>
+    <body onload="inputChange();">
 
 	<center>
 		<div id="connpass" 
@@ -327,15 +327,14 @@
     			        border:0;
 				width: 70vw;
 				height: 70vw;
-				
-			
-
-
+				display: flex;
+				justify-content: center;
+				align-items: center;
 			">
 
 			<img id="needle" src="https://raw.githubusercontent.com/shisohuri/compass/a74a2ed76c0902a3b590a296b38cfe2040983532/needle.png" 
 			 style="
-				width: 100%;
+				width: 80%;
 			" />
 
 
