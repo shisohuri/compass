@@ -309,7 +309,7 @@
 	                    direction = "北西";
 	                }
 
-			console.log(degrees　+"："+　direction);
+			//console.log(degrees　+"："+　direction);
 
 			return direction;
 		}
@@ -334,6 +334,9 @@
 		//読み込み時処理
 		function onload(){
 			inputChange();
+
+			//距離の更新
+			document.querySelector("#distance").innerHTML = distance(tolat, tolon, fromlat, fromlon);
 
 			//デバッグモードをON
 			if(debugMode()){
@@ -377,13 +380,17 @@
 		<h1> <span id="todirection"></span> <span id="distance"></span><br /> </h1>
 
 
+
+		<h3>
+			  目的地：<span id="address"></span><br />
+			  現在地：<span id="fromaddress"></span><br />
+			　　　　　（誤差：<span id="accuracy"></span>m）<br>
+		</h3>
+		<label>目的地座標：<input type="text" size="40" id="toCoordinate" value="35.68971699135241, 139.69211818004416" onchange="inputChange()"></label>
+
+
 	</center>
-<h3>
-	  目的地:<span id="address"></span><br />
-	  現在地:<span id="fromaddress"></span><br />
-	　　　　　誤差：<span id="accuracy"></span>m）<br>
-</h3>
-<label>目的地座標：<input type="text" size="40" id="toCoordinate" value="35.68971699135241, 139.69211818004416" onchange="inputChange()"></label>
+
 
             <input type="button" id="permit" style = "display:none;" value="許可"/>
 
