@@ -329,9 +329,9 @@
 			inputChange();
 
 			//デバッグモードをON
-			//if(debugMode()){
+			if(debugMode()){
 				document.getElementById("debug").style.display = "block";
-			//}
+			}
 
 		}
 
@@ -371,6 +371,15 @@
 
 
 	</center>
+<h3>
+	  方角:<span id="todirection"></span><br>
+	  直線距離:<span id="distance"></span><br>
+	  目的地:<span id="address"></span><br>
+	  現在地:<span id="fromaddress"></span><br>
+</h3>
+<label>目的地座標：<input type="text" size="40" id="toCoordinate" value="35.68971699135241, 139.69211818004416" onchange="inputChange()"></label>
+
+
 
 <div id = "debug" style = "display:none;">
 
@@ -385,19 +394,14 @@
 
 			  緯度: <p id="lat"></p>
 			  経度: <p id="lon"></p>
-			  目的地:<p id="address"></p>
-			  現在地:<p id="fromaddress"></p>
-			  方角:<p id="todirection"></p>
-			  直線距離:<p id="distance"></p>
 
 
-<label>目的地座標：<input type="text" size="40" id="toCoordinate" value="35.68971699135241, 139.69211818004416" onchange="inputChange()"></label>
 			<br/>
 			<br/>
 
 </div>
 
-			  <p id="test">v2</p>
+			  <p id="test">v3</p>
 
     </body>
 </html>
