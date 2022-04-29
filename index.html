@@ -41,6 +41,10 @@
 					//目的地方角記載の更新
 					document.querySelector("#todirection").innerHTML = happo(degrees);
 
+					//GPS誤差の更新
+					document.querySelector("#accuracy").innerHTML = pos.coords.accuracy;
+
+
 
 				}
 
@@ -97,6 +101,9 @@
                 os = detectOSSimply();
                 if (os == "iphone") {
 			window.alert("iOSは多分正常動作しないっす。覚悟の上なら許可ボタン押して使ってみてください。爆発しても知らんぞ");
+
+			//ボタンの表示
+			document.getElementById("permit").style.display = "block";
 
                     // safari用。DeviceOrientation APIの使用をユーザに許可して貰う
                     document.querySelector("#permit").addEventListener("click", permitDeviceOrientationForSafari);
@@ -372,19 +379,17 @@
 
 	</center>
 <h3>
-	  方角:<span id="todirection"></span><br>
-	  直線距離:<span id="distance"></span><br>
 	  目的地:<span id="address"></span><br>
-	  現在地:<span id="fromaddress"></span><br>
+	  直線距離:<span id="todirection"></span> <span id="distance"></span><br>
+	  現在地:<span id="fromaddress"></span>（誤差：<span id="accuracy"></span>m）<br>
 </h3>
 <label>目的地座標：<input type="text" size="40" id="toCoordinate" value="35.68971699135241, 139.69211818004416" onchange="inputChange()"></label>
 
-
+            <input type="button" id="permit" style = "display:none;" value="許可"/>
 
 <div id = "debug" style = "display:none;">
 
         <ul>
-            <input type="button" id="permit" value="SafariでDeviceOrientationを許可"/>
             <li>【方角】<span id="direction"></span></li>
             <li>【absolute】<span id="absolute"></span></li>
             <li>【alpha】<span id="alpha"></span></li>
@@ -401,7 +406,7 @@
 
 </div>
 
-			  <p id="test">v3</p>
+			  <p id="test">v4</p>
 
     </body>
 </html>
