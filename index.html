@@ -96,6 +96,8 @@
                 // 簡易的なOS判定
                 os = detectOSSimply();
                 if (os == "iphone") {
+			window.alert("iOSは多分正常動作しないっす。覚悟の上なら許可ボタン押して使ってみてください。爆発しても知らんぞ");
+
                     // safari用。DeviceOrientation APIの使用をユーザに許可して貰う
                     document.querySelector("#permit").addEventListener("click", permitDeviceOrientationForSafari);
 
@@ -223,19 +225,19 @@
 			var latlon = toCoordinate.value.split(', ');
 			
 			if (latlon.length != 2) {
-				alert("入力形式が異常です。「緯度, 経度」の形式で入力してください");
+				alert("入力形式が異常です。「緯度, 経度」の形式で入力してください(カンマの後ろに半角スペースが必要)");
 				toCoordinate.value = tolat+', '+tolon;
-			}
-			
-			//目的地の記録
-			tolat = latlon[0];
-                        tolon = latlon[1];
+			}else{
+				//目的地の記録
+				tolat = latlon[0];
+	                        tolon = latlon[1];
+                        }
 
 			//住所の更新
-			RGeocoding(latlon[0],latlon[1] ,"#address");
+			RGeocoding(tolat,tolon ,"#address");
 
 			//距離の更新
-			document.querySelector("#distance").innerHTML = distance(latlon[0], latlon[1], fromlat, fromlon);
+			document.querySelector("#distance").innerHTML = distance(tolat, tolon, fromlat, fromlon);
 
 			//目的地への角度
 			var degrees = Math.round(direction(fromlat, fromlon, tolat, tolon));
@@ -304,6 +306,28 @@
 
 			return direction;
 		}
+
+
+		//デバッグモードをON
+		if(debugMode()){
+			document.getElementById("debug").style.display = "block";
+		}
+
+
+		function debugMode(){
+		    var pageUrl = window.location.search.substring(1);
+		    var urlVar = pageUrl.split('&');
+		    for (var i = 0; i < urlVar.length; i++){
+		        var paramName = urlVar[i].split('=');
+		        if (paramName[0] == "debug") {
+		            return decodeURI(paramName[1]);        
+			}else{
+			    return false;
+			}
+
+		    }
+		}
+
         </script>
     </head>
 
@@ -337,6 +361,8 @@
 
 	</center>
 
+<div id = "debug" style = "display:none;">
+
         <ul>
             <input type="button" id="permit" value="SafariでDeviceOrientationを許可"/>
             <li>【方角】<span id="direction"></span></li>
@@ -358,7 +384,9 @@
 			<br/>
 			<br/>
 
-			  <p id="test">v9</p>
+</div>
+
+			  <p id="test">v0</p>
 
     </body>
 </html>
