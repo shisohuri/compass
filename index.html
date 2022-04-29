@@ -32,7 +32,7 @@
 					RGeocoding(fromlat　,fromlon ,"#fromaddress");
 
 					//目的地への角度
-					var degrees = Math.round(direction(fromlat, fromlon, tolan, tolon));
+					var degrees = Math.round(direction(fromlat, fromlon, tolat, tolon));
 
 					//コンパスの針コントロール
 					document.getElementById("needle").style.transform 
@@ -238,7 +238,7 @@
 			document.querySelector("#distance").innerHTML = distance(latlon[0], latlon[1], fromlat, fromlon);
 
 			//目的地への角度
-			var degrees = Math.round(direction(fromlat, fromlon, tolan, tolon));
+			var degrees = Math.round(direction(fromlat, fromlon, tolat, tolon));
 
 			//コンパスの針コントロール
 			document.getElementById("needle").style.transform 
@@ -358,7 +358,7 @@
 			<br/>
 			<br/>
 
-			  <p id="test">v7</p>
+			  <p id="test">v8</p>
 
     </body>
 </html>
