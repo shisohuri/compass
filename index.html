@@ -31,8 +31,8 @@
 					var degrees = Math.round(direction(fromlat, fromlon, 35.68971699135241, 139.69211818004416))
 
 					//コンパスの針コントロール
-					//document.getElementById("needle").style.transform 
-					//	= "rotate("+ degrees +"deg)";
+					document.getElementById("needle").style.transform 
+						= "rotate("+ degrees +"deg)";
 
 					//目的地方角記載の更新
 					document.querySelector("#todirection").innerHTML = happo(degrees);
@@ -62,7 +62,7 @@
 					alert("ブラウザが位置情報取得に対応していません");
 				}
 
-			RGeocoding("35.68971699135241, 139.69211818004416" ,"#address");
+			//RGeocoding("35.68971699135241, 139.69211818004416" ,"#address");
 			
 
 
@@ -166,7 +166,7 @@
                 document.querySelector("#beta").innerHTML = beta;
                 document.querySelector("#gamma").innerHTML = gamma;
 
-		//document.getElementById("connpass").style.transform = "rotate(" + Math.round(360 -degrees) + "deg)";
+		document.getElementById("connpass").style.transform = "rotate(" + Math.round(360 -degrees) + "deg)";
 		
 
 
@@ -333,7 +333,7 @@
 
 			">
 
-			<img id="needle" src="https://raw.githubusercontent.com/shisohuri/compass/3777dc42f48274ffb8d147419b710409ab35998d/needle.png" 
+			<img id="needle" src="https://raw.githubusercontent.com/shisohuri/compass/a74a2ed76c0902a3b590a296b38cfe2040983532/needle.png" 
 			 style="
 				width: 100%;
 			" />
@@ -367,7 +367,7 @@
 			<br/>
 			<br/>
 
-			  <p id="test">v5</p>
+			  <p id="test">v6</p>
 
     </body>
 </html>
