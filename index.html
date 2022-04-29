@@ -7,9 +7,12 @@
         <title>目的地コンパス</title>
 
 			<script>
-
+			//現在地
 			var fromlat = 0;
 			var fromlon = 0;
+			//目的地
+			var tolat = 35.68971699135241;
+                        var tolon = 139.69211818004416;
 
 
 
@@ -24,11 +27,12 @@
 					// 緯度・経度を表示
 					document.querySelector("#lat").innerHTML = fromlat;
 					document.querySelector("#lon").innerHTML = fromlon;
-
+					
+					//住所表示の更新
 					RGeocoding(fromlat　,fromlon ,"#fromaddress");
 
 					//目的地への角度
-					var degrees = Math.round(direction(fromlat, fromlon, 35.68971699135241, 139.69211818004416))
+					var degrees = Math.round(direction(fromlat, fromlon, tolan, tolon));
 
 					//コンパスの針コントロール
 					document.getElementById("needle").style.transform 
@@ -62,11 +66,6 @@
 					alert("ブラウザが位置情報取得に対応していません");
 				}
 
-			//RGeocoding("35.68971699135241, 139.69211818004416" ,"#address");
-			
-
-
-
 
 			//逆ジオコーディング 緯度経度渡すと住所返すマン
 			async function RGeocoding(lat ,lon ,target){
@@ -86,9 +85,6 @@
 			}
 
 
-			</script>
-
-        <script type="text/javascript">
             // OS識別用
             let os;
 
@@ -137,30 +133,8 @@
                     degrees = compassHeading(alpha, beta, gamma);
                 }
 
-                let direction;
-                if (
-                    (degrees > 337.5 && degrees < 360) ||
-                    (degrees > 0 && degrees < 22.5)
-                ) {
-                    direction = "北";
-                } else if (degrees > 22.5 && degrees < 67.5) {
-                    direction = "北東";
-                } else if (degrees > 67.5 && degrees < 112.5) {
-                    direction = "東";
-                } else if (degrees > 112.5 && degrees < 157.5) {
-                    direction = "東南";
-                } else if (degrees > 157.5 && degrees < 202.5) {
-                    direction = "南";
-                } else if (degrees > 202.5 && degrees < 247.5) {
-                    direction = "南西";
-                } else if (degrees > 247.5 && degrees < 292.5) {
-                    direction = "西";
-                } else if (degrees > 292.5 && degrees < 337.5) {
-                    direction = "北西";
-                }
-
                 document.querySelector("#direction").innerHTML =
-                    direction + " : " + degrees;
+                    happo(degrees) + " : " + degrees;
                 document.querySelector("#absolute").innerHTML = absolute;
                 document.querySelector("#alpha").innerHTML = alpha;
                 document.querySelector("#beta").innerHTML = beta;
@@ -245,15 +219,33 @@
 
 			let toCoordinate = document.getElementById('toCoordinate');
 
-			//alert(toCoordinate.value);
+			//入力座標解析
+			try{
+				var latlon = toCoordinate.value.split(', ');
+			} catch (error) {
+				alert("入力形式が異常です。「緯度, 経度」の形式で入力してください");
+				toCoordinate.value = tolat+', '+tolon
+			}
+			
+			//目的地の記録
+			tolat = latlon[0];
+                        tolon = latlon[1];
 
-			var latlon = toCoordinate.value.split(', ');
-
-			//alert(latlon[0]);
-
+			//住所の更新
 			RGeocoding(latlon[0],latlon[1] ,"#address");
 
+			//距離の更新
 			document.querySelector("#distance").innerHTML = distance(latlon[0], latlon[1], fromlat, fromlon);
+
+			//目的地への角度
+			var degrees = Math.round(direction(fromlat, fromlon, tolan, tolon));
+
+			//コンパスの針コントロール
+			document.getElementById("needle").style.transform 
+				= "rotate("+ degrees +"deg)";
+
+			//目的地方角記載の更新
+			document.querySelector("#todirection").innerHTML = happo(degrees);
 		}
 
 
@@ -366,7 +358,7 @@
 			<br/>
 			<br/>
 
-			  <p id="test">v6</p>
+			  <p id="test">v7</p>
 
     </body>
 </html>
