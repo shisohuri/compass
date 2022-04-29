@@ -308,10 +308,6 @@
 		}
 
 
-		//デバッグモードをON
-		//if(debugMode()){
-			document.getElementById("debug").style.display = "block";
-		//}
 
 
 		function debugMode(){
@@ -327,6 +323,20 @@
 
 		    }
 		}
+
+		//読み込み時処理
+		function onload(){
+			inputChange();
+
+			//デバッグモードをON
+			//if(debugMode()){
+				document.getElementById("debug").style.display = "block";
+			//}
+
+		}
+
+
+
 
         </script>
     </head>
@@ -387,7 +397,7 @@
 
 </div>
 
-			  <p id="test">v1</p>
+			  <p id="test">v2</p>
 
     </body>
 </html>
