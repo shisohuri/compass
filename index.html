@@ -81,7 +81,7 @@
 				                + address.result.municipality.mname
 				                + address.result.local[0].section);
 				} catch (error) {
-					var ret = "取得できませんでした";
+					var ret = "座標を住所化できませんでした。↓誤差情報が出ていればGPSは動いています";
 				}
 
 			      document.querySelector(target).innerHTML = ret;
@@ -99,7 +99,7 @@
 	                // 簡易的なOS判定
 	                os = detectOSSimply();
 	                if (os == "iphone") {
-				window.alert("iOSは多分正常動作しないっす。覚悟の上なら許可ボタン押して使ってみてください。爆発しても知らんぞ");
+				window.alert("iOSは未検証です。注意事項のちょい上あたりに許可ボタンが出る人は押してみてください。使えるようになるかもです");
 
 				//ボタンの表示
 				document.getElementById("permit").style.display = "block";
